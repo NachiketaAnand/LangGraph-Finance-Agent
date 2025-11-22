@@ -2,7 +2,7 @@
 ## Title: MarketSense AI- An Autonomous Financial Analyst
 
 ## Overview
-MarketSense AI is an intelligent financial decision-support agent that helps retail investors avoid emotional trading and the lack of reliable information. Unlike normal trading bots that only look at price charts, MarketSense AI uses LangGraph to run a multi-stage analysis pipeline. It reads live market data through tool calling, interprets fresh news using sentiment analysis, and uses Dynamic RAG to check these signals against the official risk factors inside SEC 10-K filings. By combining real-time sentiment with long-term fundamental risks, the system generates structured and evidence-based trading recommendations.
+MarketSense AI is an intelligent financial decision support agent that helps retail investors avoid emotional trading and the lack of reliable information. Unlike normal trading bots that only look at price charts, MarketSense AI uses LangGraph to run a multi stage analysis pipeline. It reads live market data through tool calling, interprets fresh news using sentiment analysis, and uses Dynamic RAG to check these signals against the official risk factors inside SEC 10-K filings. By combining real-time sentiment with long term fundamental risks, the system generates structured and evidence based trading recommendations.
 
 ## Reason for picking up this project
 
