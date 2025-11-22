@@ -6,9 +6,9 @@ MarketSense AI is an intelligent financial decision-support agent that helps ret
 
 ## Reason for picking up this project
 
-This project is aligned with the MAT496 course content as it demonstrates a mastery of "reading" unstructured data to drive complex decision-making. 
-Unstructured Text Processing: The core engine ingests messy, human-written text—specifically financial news articles and SEC filings—which requires LLM reasoning rather than simple keyword matching.
-Tool Calling: It utilizes the yfinance tool for real-time price math and the Tavily search tool for live news, ensuring the LLM is grounded in reality.
+This project is aligned with the MAT496 course content as it demonstrates a mastery of "reading" unstructured data to drive complex decision making. 
+Unstructured Text Processing: The core engine ingests messy, human written text specifically financial news articles and SEC filings which requires LLM reasoning rather than simple keyword matching.
+Tool Calling: It utilizes the yfinance tool for real time price math and the Tavily search tool for live news, ensuring the LLM is grounded in reality.
 LangGraph Orchestration: It uses a stateful graph to manage the workflow, passing context between the news reader, the risk analyst, and the final decision maker.
 Structured Output: The final deliverable is not a chat, but a strict JSON object suitable for integration into a trading dashboard
 
