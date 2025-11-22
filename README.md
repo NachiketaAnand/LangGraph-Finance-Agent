@@ -1,71 +1,28 @@
-Template for creating and submitting MAT496 capstone project.
 
-# Overview of MAT496
-
-In this course, we have primarily learned Langgraph. This is helpful tool to build apps which can process unstructured `text`, find information we are looking for, and present the format we choose. Some specific topics we have covered are:
-
-- Prompting
-- Structured Output 
-- Semantic Search
-- Retreaval Augmented Generation (RAG)
-- Tool calling LLMs & MCP
-- Langgraph: State, Nodes, Graph
-
-We also learned that Langsmith is a nice tool for debugging Langgraph codes.
-
-------
-
-# Capstone Project objective
-
-The first purpose of the capstone project is to give a chance to revise all the major above listed topics. The second purpose of the capstone is to show your creativity. Think about all the problems which you can not have solved earlier, but are not possible to solve with the concepts learned in this course. For example, We can use LLM to analyse all kinds of news: sports news, financial news, political news. Another example, we can use LLMs to build a legal assistant. Pretty much anything which requires lots of reading, can be outsourced to LLMs. Let your imagination run free.
-
-
--------------------------
-
-# Project report Template
-
-## Title: [your title goes here]
+## Title: MarketSense AI- An Autonomous Financial Analyst
 
 ## Overview
-
-[your overview goes here. My project does this that  etc]
+MarketSense AI is an intelligent financial decision-support agent that helps retail investors avoid emotional trading and the lack of reliable information. Unlike normal trading bots that only look at price charts, MarketSense AI uses LangGraph to run a multi-stage analysis pipeline. It reads live market data through tool calling, interprets fresh news using sentiment analysis, and uses Dynamic RAG to check these signals against the official risk factors inside SEC 10-K filings. By combining real-time sentiment with long-term fundamental risks, the system generates structured and evidence-based trading recommendations.
 
 ## Reason for picking up this project
 
-Expain how this project is aligned with this course content.
+This project is aligned with the MAT496 course content as it demonstrates a mastery of "reading" unstructured data to drive complex decision-making. 
+Unstructured Text Processing: The core engine ingests messy, human-written text—specifically financial news articles and SEC filings—which requires LLM reasoning rather than simple keyword matching.
+Tool Calling: It utilizes the yfinance tool for real-time price math and the Tavily search tool for live news, ensuring the LLM is grounded in reality.
+LangGraph Orchestration: It uses a stateful graph to manage the workflow, passing context between the news reader, the risk analyst, and the final decision maker.
+Structured Output: The final deliverable is not a chat, but a strict JSON object suitable for integration into a trading dashboard
 
 ## Plan
+I plan to execute these steps to complete my project.
 
-I plan to excecute these steps to complete my project.
+[TODO] Step 1: Initialize project structure, set up environment variables (OPENAI, TAVILY), and define the AgentState schema.
 
-- [TODO] Step 1 involves blah blah
-- [TODO] Step 2 involves blah blah
-- [TODO] Step 3 involves blah blah
-- ...
-- [TODO] Step n involves blah blah
+[TODO] Step 2: Implement the yfinance Tool to fetch live stock prices and calculate unrealized P&L based on user input.
+
+[TODO] Step 3: Implement the Tavily Search Tool to scrape the top 5 financial news headlines for a specific ticker.
+
+[TODO] Step 4: Create the SentimentAnalysis Node that takes raw news text and returns a floating-point sentiment score.
 
 ## Conclusion:
 
 I had planned to achieve {this this}. I think I have/have-not achieved the conclusion satisfactorily. The reason for your satisfaction/unsatisfaction.
-
-----------
-
-# Added instructions:
-
-- This is a `solo assignment`. Each of you will work alone. You are free to talk, discuss with chatgpt, but you are responsible for what you submit. Some students may be called for viva. You should be able to each and every line of work submitted by you.
-
-- `commit` History maintenance.
-  - Fork this respository and build on top of that.
-  - For every step in your plan, there has to be a commit.
-  - Change [TODO] to [DONE] in the plan, before you commit after that step. 
-  - The commit history should show decent amount of work spread into minimum two dates. 
-  - **All the commits done in one day will be rejected**. Even if you are capable of doing the whole thing in one day, refine it in two days.  
- 
- - Deadline: Nov 30, Sunday 11:59 pm
-
-
-# Grading: total 25 marks
-
-- Coverage of most of topics in this class: 20
-- Creativity: 5
-  
