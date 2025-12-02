@@ -35,6 +35,9 @@ I executed the following steps to complete this project:
 
 [DONE] Step 9: Interactive UI & Visualization Built a professional Streamlit dashboard featuring a "Widget-style" sidebar for top market movers (with Sparkline charts) and a clean, split-view display for the AI's final verdict and evidence.
 
+## Video link:
+https://youtu.be/nR-PClxyiiI
+
 ## Conclusion:
 I had planned to achieve an autonomous agent that could synthesize price, news, and risk data. I think I have achieved the conclusion satisfactorily. The system successfully combines three distinct data sources that usually require three different websites, and synthesizes them into a single, coherent "Buy/Sell" recommendation. The RAG implementation was particularly successful in finding hidden risks that recent news articles often missed.
 
