@@ -1,12 +1,9 @@
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-import os
 
-# 1. Load API Keys
 load_dotenv()
 
-# 2. Setup the LLM (GPT-4o-mini is cheap and fast)
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
 
 def analyze_sentiment(news_text: str):
     """
@@ -14,45 +11,76 @@ def analyze_sentiment(news_text: str):
     """
     if not news_text:
         return 0.0
-
     prompt = f"""
-    You are a financial sentiment analyzer. 
-    Read the following news headlines and determine the overall sentiment score.
+    You are a cynical financial analyst. 
+    Analyze the provided news snippets.
     
-    Return ONLY a floating point number between -1.0 (Extremely Negative) and 1.0 (Extremely Positive).
-    Do not add any text, markdown, or explanation. Just the number.
+    CRITICAL RULES:
+    1. If the news is just generic updates or marketing fluff, score it 0.0 (Neutral).
+    2. Only give high positive scores (> 0.5) for CONCRETE hard data (Record earnings, New huge contract).
+    3. Look for hidden negatives (Delays, missed expectations, regulatory issues).
     
-    NEWS:
+    Return ONLY a floating point number between -1.0 (Negative) and 1.0 (Positive).
+    NEWS: {news_text}
+    """
+    
+    try:
+        result = llm.invoke(prompt)
+        return float(result.content.strip())
+    except Exception as e:
+        print(f"Sentiment Error: {e}")
+        return 0.0
+
+def summarize_news(news_text: str):
+    """
+    Uses LLM to summarize and clean raw news into professional bullet points.
+    """
+    if not news_text:
+        return "No news found."
+        
+    prompt = f"""
+    You are a financial news editor. 
+    Read the following raw news snippets (which may contain web scraping garbage) and summarize the key facts.
+    
+    Instructions:
+    1. Extract the top 3 most important financial updates (Earnings, M&A, Product Launches, Stock Moves).
+    2. Remove all marketing fluff ("Join Pro", "Subscribe", "Login").
+    3. Format as a clean Markdown list of bullet points.
+    4. Keep it concise (1 sentence per bullet).
+
+    RAW TEXT:
     {news_text}
     """
     
     try:
-        # Call the LLM
         result = llm.invoke(prompt)
-        
-        # Clean the output (remove extra whitespace) and convert to float
-        score = float(result.content.strip())
-        return score
+        return result.content.strip()
     except Exception as e:
-        print(f"Sentiment Analysis Error: {e}")
-        return 0.0
+        return f"Error summarizing news: {e}"
 
-# --- TEST AREA ---
-if __name__ == "__main__":
-    print("--- TESTING SENTIMENT NODE ---")
-    sample_news = """
-    - Nvidia revenue triples, beating all expectations.
-    - AI demand is slowing down, analysts warn.
-    - CEO says production is back on track.
+def summarize_risks(risk_text: str):
     """
-    print(f"News: {sample_news}")
+    Uses LLM to summarize raw 10-K risk text into concise bullet points.
+    """
+    if not risk_text or "No 10-K indexed" in risk_text:
+        return "No specific risks identified from 10-K."
+        
+    prompt = f"""
+    You are a Risk Analyst reading an SEC 10-K filing.
+    Read the following raw "Risk Factors" text.
     
-    score = analyze_sentiment(sample_news)
-    print(f"Sentiment Score: {score}")
+    Instructions:
+    1. Identify the top 3 SPECIFIC risks to this company (e.g., "Supply chain dependence on Taiwan", "Antitrust investigation", "Declining iPhone sales").
+    2. Ignore generic boilerplate risks (e.g., "Stock price may fluctuate", "General economic conditions").
+    3. Format as a clean Markdown list.
+    4. Be extremely concise.
+
+    RAW TEXT:
+    {risk_text[:20000]}
+    """
     
-    if score > 0.5:
-        print("Verdict: BULLISH ")
-    elif score < -0.5:
-        print("Verdict: BEARISH ")
-    else:
-        print("Verdict: NEUTRAL ")
+    try:
+        result = llm.invoke(prompt)
+        return result.content.strip()
+    except Exception as e:
+        return f"Error summarizing risks: {e}"
